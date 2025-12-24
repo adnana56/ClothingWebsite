@@ -1,0 +1,119 @@
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px 40px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ---------- Logo Section ---------- */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo img {
+  height: 45px;
+}
+
+.nav-logo p {
+  color: #333;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* ---------- Menu Section ---------- */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 40px;
+  color: #555;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.nav-menu li {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Hover effect */
+.nav-menu li:hover {
+  color: #ff9d00;
+}
+
+/* Underline animation */
+.nav-menu li::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ff9d00;
+  border-radius: 10px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* When hovered OR active */
+.nav-menu li:hover::after,
+.nav-menu li.active::after {
+  width: 100%;
+}
+
+/* ---------- Login & Cart Section ---------- */
+.nav-login-cart {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-login-cart button {
+  width: 130px;
+  height: 48px;
+  border: 1px solid #ff9d00;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ff9d00;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-login-cart button:hover {
+  background: #ff9d00;
+  color: white;
+}
+
+.nav-login-cart img {
+  width: 30px;
+  cursor: pointer;
+}
+
+.navcart-count {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -30px;
+  margin-left: -40px;
+  border-radius: 50%;
+  font-size: 12px;
+  background: red;
+  color: white;
+}
