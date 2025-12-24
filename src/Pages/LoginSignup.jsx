@@ -16,7 +16,7 @@ const LoginSignup = () => {
   const login = async () => {
     console.log("Login Function Executed", formData);
     let responseData;
-    await fetch("http://localhost:8080/auth/login", {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -38,7 +38,7 @@ const LoginSignup = () => {
   const signup = async () => {
     console.log("Signup Function Executed", formData);
     let responseData;
-    await fetch("http://localhost:8080/auth/signup", {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/signup`, {
       method: "POST",
       headers: {
         Accept: "application/json",
