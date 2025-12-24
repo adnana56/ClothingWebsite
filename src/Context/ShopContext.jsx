@@ -12,13 +12,26 @@ const getDefaultCart = () => {
   return cart;
 };
 
+// Helper to safely parse JSON and log errors
+const handleResponse = (response, apiName) => {
+  return response.text().then(text => {
+    try {
+      return text ? JSON.parse(text) : {};
+    } catch (error) {
+      console.error(`Error parsing JSON from ${apiName}:`, error);
+      console.log(`Raw response from ${apiName}:`, text);
+      throw error;
+    }
+  });
+};
+
 const ShopContextprovider = (props) => {
   const [all_product, setAll_Product] = useState([]);
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   useEffect(() => {
     fetch("http://localhost:8080/allproducts")
-      .then((response) => response.json())
+      .then((response) => handleResponse(response, "allproducts"))
       .then((data) => setAll_Product(data));
 
     if (localStorage.getItem("auth-token")) {
@@ -31,7 +44,7 @@ const ShopContextprovider = (props) => {
         },
         body: "",
       })
-        .then((response) => response.json())
+        .then((response) => handleResponse(response, "getcart"))
         .then((data) => setCartItems(data));
     }
   }, []);
