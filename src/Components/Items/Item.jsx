@@ -1,27 +1,13 @@
 import React from 'react'
 import './Item.css'
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const Item = (props) => {
   // DEBUG LOGGING
   // console.log(`Item id:${props.id} name:${props.name} image:${props.image}`);
 
-  let imageSrc = props.image;
-
-  // If it's a filename from DB, assume it's in public/images/
-  if (imageSrc && !imageSrc.startsWith('http') && !imageSrc.startsWith('/') && !imageSrc.startsWith('static')) {
-    imageSrc = `/images/${imageSrc}`;
-  }
-
-  // Fallback
-  if (!imageSrc) {
-    imageSrc = '/images/p1_product.png';
-  }
-
-  // Handle ES Module default export if necessary (for newer Webpack/React setups)
-  if (imageSrc && typeof imageSrc === 'object' && imageSrc.default) {
-    imageSrc = imageSrc.default;
-  }
+  const imageSrc = getImageUrl(props.image);
 
   return (
     <div className='item'>

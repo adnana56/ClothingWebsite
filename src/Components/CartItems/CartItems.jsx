@@ -3,6 +3,8 @@ import "./CartItems.css";
 import { ShopContext } from "../../Context/ShopContext";
 import remove_icon from "../Assets/cart_cross_icon.png";
 
+import { getImageUrl } from '../../utils/imageUtils';
+
 const CartItems = () => {
   const { all_product, cartItems, removeFromCart, getTotalCartAmount } = useContext(ShopContext);
 
@@ -35,7 +37,7 @@ const CartItems = () => {
             <div className="format" key={item.id}>
               <img
                 className="product-icon"
-                src={item.image && !item.image.startsWith('http') && !item.image.startsWith('/') ? `/images/${item.image}` : item.image}
+                src={getImageUrl(item.image)}
                 alt={item.name}
                 onError={(e) => { e.target.onerror = null; e.target.src = '/p1_product.png' }}
               />

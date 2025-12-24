@@ -4,21 +4,25 @@ import star_icon from '../Assets/star_icon.png'
 import star_dull_icon from '../Assets/star_dull_icon.png'
 import { ShopContext } from '../../Context/ShopContext'
 
+import { getImageUrl } from '../../utils/imageUtils';
+
 const ProductDisplay = (props) => {
   const { product } = props
   const { addToCart } = useContext(ShopContext);
+
+  const mainImage = getImageUrl(product.image);
 
   return (
     <div className='productdisplay'>
       <div className="productdisplay-left">
         <div className="image-list">
-          <img src={product.image && !product.image.startsWith('http') && !product.image.startsWith('/') ? `/images/${product.image}` : product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
+          <img src={mainImage} alt="" />
+          <img src={mainImage} alt="" />
+          <img src={mainImage} alt="" />
+          <img src={mainImage} alt="" />
         </div>
         <div className="display-img">
-          <img className='main-img' src={product.image && !product.image.startsWith('http') && !product.image.startsWith('/') ? `/images/${product.image}` : product.image} alt="" />
+          <img className='main-img' src={mainImage} alt="" />
         </div>
       </div>
 
