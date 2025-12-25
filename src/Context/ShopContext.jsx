@@ -30,12 +30,12 @@ const ShopContextprovider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   useEffect(() => {
-    fetch("http://localhost:8080/allproducts")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/allproducts`)
       .then((response) => handleResponse(response, "allproducts"))
       .then((data) => setAll_Product(data));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:8080/getcart", {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/getcart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -52,7 +52,7 @@ const ShopContextprovider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:8080/addtocart", {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/addtocart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -69,7 +69,7 @@ const ShopContextprovider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:8080/removefromcart", {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/removefromcart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",

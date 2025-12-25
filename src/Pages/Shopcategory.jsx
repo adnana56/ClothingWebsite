@@ -8,7 +8,7 @@ const Shopcategory = (props) => {
   const { all_product } = useContext(ShopContext)
   return (
     <div className='shop-category'>
-      <img className="shopcategory-banner" src={props.banner} />
+      <img className="shopcategory-banner" src={props.banner} alt="category banner" />
       <div className="shopcategory-index">
         <p>
           <span>1-12</span> of 36

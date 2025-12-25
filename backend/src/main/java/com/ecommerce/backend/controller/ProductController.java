@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000") // Allow React Frontend
+@CrossOrigin(origins = "*") // Allow all origins for Vercel deployment
 public class ProductController {
 
     @Autowired
