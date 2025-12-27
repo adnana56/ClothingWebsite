@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
+import BACKEND_URL from "../config";
 
 
 
@@ -30,12 +31,12 @@ const ShopContextprovider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/allproducts`)
+    fetch(`${BACKEND_URL}/allproducts`)
       .then((response) => handleResponse(response, "allproducts"))
       .then((data) => setAll_Product(data));
 
     if (localStorage.getItem("auth-token")) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/getcart`, {
+      fetch(`${BACKEND_URL}/getcart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -52,7 +53,7 @@ const ShopContextprovider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/addtocart`, {
+      fetch(`${BACKEND_URL}/addtocart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -69,7 +70,7 @@ const ShopContextprovider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/removefromcart`, {
+      fetch(`${BACKEND_URL}/removefromcart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",

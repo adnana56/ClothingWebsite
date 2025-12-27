@@ -1,7 +1,9 @@
 export const getImageUrl = (imagePath) => {
     if (!imagePath) {
-        return '/images/p1_product.png'; // Default fallback
+        console.warn('Image path missing, using fallback');
+        return '/images/product_1.png'; // Default fallback
     }
+    console.log('Processing image path:', imagePath);
 
     // If it's already a full URL (http/https), return it
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
