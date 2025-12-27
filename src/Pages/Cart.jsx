@@ -3,8 +3,8 @@ import CartItems from '../Components/CartItems/CartItems'
 
 const Cart = () => {
   return (
-    <div>
-      <CartItems/>
+    <div className='py-8 md:py-16'>
+      <CartItems />
     </div>
   )
 }

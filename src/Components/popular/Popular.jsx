@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import './Popular.css'
 import Item from '../Items/Item'
 import BACKEND_URL from '../../config'
 import data_product from '../Assets/data'
-
 
 function Popular() {
   const [popularProducts, setPopularProducts] = useState(data_product);
@@ -16,9 +14,10 @@ function Popular() {
   }, [])
 
   return (
-    <div className='popular'>
-      <h1>POPULAR CHOICE IN WOMEN</h1>
-      <div className='popular-item'>
+    <div className='flex flex-col items-center gap-2.5 h-auto mb-12 md:mb-0'>
+      <h1 className='text-[#171717] text-3xl md:text-5xl font-semibold mt-12 text-center'>POPULAR IN WOMEN</h1>
+      <hr className='w-32 md:w-52 h-1.5 rounded bg-[#252525]' />
+      <div className='mt-8 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 justify-items-center w-full px-4 max-w-[1280px]'>
         {popularProducts
           .filter((item, index, self) =>
             index === self.findIndex((t) => t.image === item.image)
