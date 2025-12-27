@@ -1,6 +1,7 @@
 services:
   - type: web
     name: clothing-store-backend
+    rootDir: backend
     runtime: java
     region: oregon
     buildCommand: mvn clean package -DskipTests
