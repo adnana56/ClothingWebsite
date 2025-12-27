@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CSS/LoginSignup.css";
+import BACKEND_URL from "../config";
 
 const LoginSignup = () => {
   const [state, setState] = useState("Login");
@@ -16,7 +17,7 @@ const LoginSignup = () => {
   const login = async () => {
     console.log("Login Function Executed", formData);
     let responseData;
-    await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
+    await fetch(`${BACKEND_URL}/auth/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -38,7 +39,7 @@ const LoginSignup = () => {
   const signup = async () => {
     console.log("Signup Function Executed", formData);
     let responseData;
-    await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/signup`, {
+    await fetch(`${BACKEND_URL}/auth/signup`, {
       method: "POST",
       headers: {
         Accept: "application/json",
