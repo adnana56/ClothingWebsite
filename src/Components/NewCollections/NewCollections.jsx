@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import './NewCollections.css'
 import Item from '../Items/Item'
+import new_collections from '../Assets/new_collections'
+import BACKEND_URL from '../../config'
 
 const NewCollections = () => {
-  const [new_collection, setNew_collection] = useState([]);
+  const [new_collection, setNew_collection] = useState(new_collections);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/newcollections`)
+    fetch(`${BACKEND_URL}/newcollections`)
       .then((response) => response.json())
-      .then((data) => setNew_collection(data));
+      .then((data) => setNew_collection(data))
+      .catch((error) => console.log("Backend unavailable, using local data for New Collections", error));
   }, [])
 
   return (

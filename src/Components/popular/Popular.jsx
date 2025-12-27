@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react'
 import './Popular.css'
 import Item from '../Items/Item'
 import BACKEND_URL from '../../config'
+import data_product from '../Assets/data'
 
 
 function Popular() {
-  const [popularProducts, setPopularProducts] = useState([]);
+  const [popularProducts, setPopularProducts] = useState(data_product);
 
   useEffect(() => {
     fetch(`${BACKEND_URL}/popularinwomen`)
       .then((response) => response.json())
-      .then((data) => setPopularProducts(data));
+      .then((data) => setPopularProducts(data))
+      .catch((error) => console.log("Backend unavailable, using local data for Popular", error));
   }, [])
 
   return (

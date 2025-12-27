@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import BACKEND_URL from "../config";
+import all_product_data from "../Components/Assets/all_product";
 
 
 
@@ -27,13 +28,19 @@ const handleResponse = (response, apiName) => {
 };
 
 const ShopContextprovider = (props) => {
-  const [all_product, setAll_Product] = useState([]);
+  // Initialize with local data so images show up immediately (and offline)
+  const [all_product, setAll_Product] = useState(all_product_data);
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   useEffect(() => {
     fetch(`${BACKEND_URL}/allproducts`)
       .then((response) => handleResponse(response, "allproducts"))
-      .then((data) => setAll_Product(data));
+      .then((data) => {
+        if (data && data.length > 0) {
+          setAll_Product(data);
+        }
+      })
+      .catch((error) => console.log("Backend unavailable, using local data", error));
 
     if (localStorage.getItem("auth-token")) {
       fetch(`${BACKEND_URL}/getcart`, {
@@ -46,7 +53,8 @@ const ShopContextprovider = (props) => {
         body: "",
       })
         .then((response) => handleResponse(response, "getcart"))
-        .then((data) => setCartItems(data));
+        .then((data) => setCartItems(data))
+        .catch((error) => console.log("Failed to fetch cart:", error));
     }
   }, []);
 
@@ -63,7 +71,8 @@ const ShopContextprovider = (props) => {
         body: JSON.stringify({ itemId: itemId }),
       })
         .then((response) => response.json())
-        .then((data) => console.log(data));
+        .then((data) => console.log(data))
+        .catch((error) => console.log("Failed to add to cart:", error));
     }
   };
 
@@ -80,7 +89,8 @@ const ShopContextprovider = (props) => {
         body: JSON.stringify({ itemId: itemId }),
       })
         .then((response) => response.json())
-        .then((data) => console.log(data));
+        .then((data) => console.log(data))
+        .catch((error) => console.log("Failed to remove from cart:", error));
     }
   };
 
