@@ -52,3 +52,24 @@ Railway can automatically detect your Java code and build it using "Nixpacks" (n
 ### Error: `Application run failed` or `CrashLoopBackOff`
 *   Check if `PORT` variable is set to `8080`.
 *   Check if Database variables are correct.
+
+---
+
+## Step 6: How to Run / Verify the Project
+
+Once the deployment is marked **Active (Green)** in Railway:
+
+1.  **Access the Backend**:
+    *   Click the link provided in the Railway Dashboard (e.g. `https://clothingwebsite-production.up.railway.app`).
+    *   You might see a 404 or white page initially because the root `/` path might not have content.
+    *   Try accessing a specific endpoint like `/allproducts`:
+        `https://clothingwebsite-production.up.railway.app/allproducts`
+        -> **If you see JSON data (products), IT IS WORKING!**
+
+2.  **Connect Your Frontend**:
+    *   **Locally**: Use `npm start`. It will now use the live backend because we updated your `.env` file.
+    *   **Deployed Frontend (e.g. Vercel)**:
+        *   Go to Vercel Settings -> Environment Variables.
+        *   Update `REACT_APP_BACKEND_URL` to your new Railway URL.
+        *   Redeploy the Frontend.
+
