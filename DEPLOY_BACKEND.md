@@ -40,14 +40,15 @@ Railway can automatically detect your Java code and build it using "Nixpacks" (n
 
 ---
 
-## Alternative: Render (Native Environment)
+## Troubleshooting
 
-1.  Create a **Web Service** on Render.
-2.  Connect your GitHub repo.
-3.  **Root Directory**: `backend`
-4.  **Runtime**: Select **Java** (Native Environment).
-5.  **Build Command**: `mvn clean package -DskipTests`
-6.  **Start Command**: `java -jar target/backend-0.0.1-SNAPSHOT.jar`
-7.  Add Environment Variables for your database (you'll need an external MySQL database, e.g. from Aiven or Railway).
+### Error: `Driver com.mysql.cj.jdbc.Driver claims to not accept jdbcUrl, jdbc:sqlserver://...`
+**Problem:** Your `SPRING_DATASOURCE_URL` variable in Railway is wrong. It is pointing to a **SQL Server** database instead of MySQL.
+**Fix:**
+1.  Go to **Variables** tab in Railway.
+2.  Find `SPRING_DATASOURCE_URL`.
+3.  Change it to: `jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}`
 
-**Summary**: Railway is better here because it gives you the MySQL database for free/easily, whereas Render requires you to find your own.
+### Error: `Application run failed` or `CrashLoopBackOff`
+*   Check if `PORT` variable is set to `8080`.
+*   Check if Database variables are correct.
